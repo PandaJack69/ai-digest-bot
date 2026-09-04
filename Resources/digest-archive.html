@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Digest Archive</title>
+    <style>
+        :root {
+            --bg: #0f1115;
+            --card: #1a1d24;
+            --text: #e8e8e8;
+            --muted: #9aa0aa;
+            --accent: #2AABEE;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 40px 20px;
+        }
+        .wrap {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        h1 { font-size: 26px; margin: 0 0 8px; }
+        .back {
+            display: inline-block;
+            color: var(--muted);
+            text-decoration: none;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+        .back:hover { color: var(--text); }
+        .digest-entry {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .digest-entry h2 { margin: 0 0 4px; font-size: 18px; }
+        .paper-count { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+        .digest-text {
+            white-space: pre-wrap;
+            font-family: inherit;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>AI Digest Archive</h1>
+        <a class="back" href="/">&larr; Back home</a>
+        {{ENTRIES}}
+    </div>
+</body>
+</html>
