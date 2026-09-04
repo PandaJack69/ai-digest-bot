@@ -9,7 +9,7 @@ func routes(_ app: Application) throws {
 //        "Hello, world!"
 //    }
     
-    app.get { req in "AI Digest Bot is running" }
+//    app.get { req in "AI Digest Bot is running" }
     try app.register(collection: DigestController())
     try app.register(collection: ArchiveController())
 }
