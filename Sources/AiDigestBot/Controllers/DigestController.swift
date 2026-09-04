@@ -48,6 +48,18 @@ struct DigestController: RouteCollection {
         }
         try await TelegramService(client: req.client, botToken: botToken, chatId: chatId)
             .send(text: "🧠 AI Daily Digest\n\n\(digestText)")
+        
+        // new
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let record = DigestRecord(
+            id: UUID(),
+            date: formatter.string(from: Date()),
+            paperTitles: papers.map { $0.paper.title },
+            digestText: digestText,
+            createdAt: Date()
+        )
+        try await req.application.digestArchive.append(record)
 
         req.logger.info("Digest sent successfully")
         return .ok
