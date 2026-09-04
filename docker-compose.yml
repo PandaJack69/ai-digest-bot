@@ -21,6 +21,8 @@ services:
     image: ai-digest-bot:latest
     build:
       context: .
+    env_file:
+      - .env
     environment:
       <<: *shared_environment
     ports:
