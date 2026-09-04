@@ -11,6 +11,7 @@ struct ChatCompletionRequest: Content {
     let model: String
     let messages: [ChatMessage]
     let temperature: Double?
+    let reasoning_effort: String? //set low reasoning
 }
 
 struct ChatMessage: Content {

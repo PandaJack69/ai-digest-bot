@@ -33,7 +33,8 @@ struct SummarizerService {
                 ChatMessage(role: "system", content: "You summarize AI research papers into concise digests."),
                 ChatMessage(role: "user", content: prompt)
             ],
-            temperature: 0.5
+            temperature: 0.5,
+            reasoning_effort: "low"
         )
 
         let response = try await client.post(URI(string: apiURL)) { req in

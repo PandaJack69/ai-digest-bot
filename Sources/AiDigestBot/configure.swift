@@ -6,7 +6,7 @@ func configure(_ app: Application) async throws {
      app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory, defaultFile: "index.html"))
     
     // LLM calls can be slow — default client timeout is short
-    app.http.client.configuration.timeout = .init(connect: .seconds(10), read: .seconds(60))
+    app.http.client.configuration.timeout = .init(connect: .seconds(10), read: .seconds(90))
     
     // Digest archive storage
     let archiveDir = URL(fileURLWithPath: app.directory.workingDirectory)

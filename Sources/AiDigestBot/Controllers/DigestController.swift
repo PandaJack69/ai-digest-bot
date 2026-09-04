@@ -24,6 +24,7 @@ struct DigestController: RouteCollection {
         req.logger.info("Starting AI digest run")
 
         let papers = try await HuggingFaceService(client: req.client).fetchTodaysPapers(limit: 5)
+        req.logger.info("Fetched \(papers.count) papers from Hugging Face") // debug
         guard !papers.isEmpty else {
             req.logger.info("No papers today — skipping")
             return .noContent
@@ -39,6 +40,7 @@ struct DigestController: RouteCollection {
         let digestText = try await SummarizerService(
             client: req.client, apiKey: llmKey, apiURL: llmURL, model: llmModel
         ).summarize(papers: papers)
+        req.logger.info("Got summary from LLM (\(digestText.count) chars)") // debug
 
         guard
             let botToken = Environment.get("TELEGRAM_BOT_TOKEN"),
@@ -48,6 +50,8 @@ struct DigestController: RouteCollection {
         }
         try await TelegramService(client: req.client, botToken: botToken, chatId: chatId)
             .send(text: "🧠 AI Daily Digest\n\n\(digestText)")
+        
+        req.logger.info("Telegram send complete") // debug
         
         // new
         let formatter = DateFormatter()
